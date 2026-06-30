@@ -1,0 +1,28 @@
+# Tabela de Testes do Frontend
+
+## Explicando a tabela:
+| # | Objetivo | Tipo do Teste | Responsável | Teste Nº | Pre-condições | Ações | Resultados | Status | Anotações |
+|:--|:---------|:--------------|:------------|:--------:|:--------------|:------|:-----------|:-------|:----------|
+|<br>ID geral da tabela de teste|<br>Descrição do resultado esperado|<br>Verifica se o sistema está funcionando corretamente: <br><br>↪Positivo: quando tudo é usado da forma esperada <br><br>↪Negativo: quando algo está errado ou fora do esperado|<br>Nome de quem executou o teste|<br>Número indicativo do teste realizado|<br>O que precisa estar pronto para a realização do teste|<br>Passo a passo de como o teste foi realizado|<br>Relato dos acontecimentos no teste|<br>Informativo se o teste foi aprovado ou reprovado|<br>Campo reservado para relatos|
+
+---
+
+### Testes:
+
+| #  | Objetivo | Tipo do Teste | Responsável | Teste Nº | Pre-condições | Ações | Resultados | Status | Anotações |
+|:--:|:---------|:--------------|:------------|:--------:|:--------------|:------|:-----------|:-------|:----------|
+| 1  | Validar se inicia na tela Home | Positivo | Fredera | 001 | App rodando em `http://localhost:5173/` | Acessar `/` | Deve exibir título `Sinta-se em casa.` e botões "Entrar" e "Cadastre-se" visíveis | Aprovado | Teste passou em 318 ms |
+| 2  | Validar se navega para tela Login | Positivo | Fredera | 002 | App rodando | Clicar botão "Entrar" | Deve exibir título `e lembre-se de limpar os calçados!` e formulário de login | Aprovado | Teste passou em 1.3 s |
+| 3  | Validar se navega para tela Register | Positivo | Fredera | 003 | App rodando | Clicar botão "Cadastre-se" | Deve exibir título `É muito bom ter você aqui!` e formulário de registro | Aprovado | Teste passou em 276 ms |
+| 4  | Validar se retorna para Home a partir da tela Login | Positivo | Fredera | 004 | App rodando | Entrar em Login e clicar "Voltar" | Deve retornar título `Sinta-se em casa.` | Aprovado | Teste passou em 292 ms |
+| 5  | Validar se retorna para Home a partir da tela Register | Positivo | Fredera | 005 | App rodando | Entrar em Register e clicar "Voltar" | Deve retornar título `Sinta-se em casa.` | Aprovado | Teste passou em 290 ms |
+| 6  | Validar se navega da tela Login para Register | Positivo | Fredera | 006 | App rodando | Entrar em Login e clicar "Cadastre-se" | Deve exibir título `É muito bom ter você aqui!` e formulário de registro | Aprovado | Teste passou em 321 ms |
+| 7  | Validar se o formulário de registro cadastra usuário com sucesso (mock) | Positivo | Fredera | 007 | App rodando em `http://localhost:5173/` | Navegar para Register, preencher campos válidos e clicar em "Cadastrar" | Deve exibir toast `"Usuário cadastrado com sucesso"` e retornar para Home | Aprovado | Teste passou em 1.9 s |
+| 8  | Validar se não cadastra usuário com apartamento inválido | Negativo | Fredera | 008 | App rodando em `http://localhost:5173/` | Navegar para Register, preencher campos com apto inválido `999` e clicar em "Cadastrar" | Deve exibir mensagem `"Apartamento inválido"` e não retornar para Home | Aprovado | Teste passou em 1.9 s |
+| 9  | Validar se não cadastra usuário já existente | Negativo | Fredera | 009 | App rodando, mock configurado para simular duplicidade | Realizar primeiro cadastro válido e depois tentar cadastrar novamente com os mesmos dados | Deve exibir mensagem `"Usuário já existente"` via toast | Aprovado | Teste passou em 545 ms |
+| 10 | Validar se o fluxo de cadastro seguido de login funciona corretamente | Positivo | Fredera | 010 | App rodando em `http://localhost:5173/`, mocks configurados para cadastro e login | Realizar cadastro válido e depois login com os mesmos dados | Deve exibir mensagens de sucesso e navegar para `/homescreen` exibindo `"Mural Condômino"` | Aprovado | Teste passou em 1.9 s |
+| 11 | Validar se não permite login com credenciais inválidas (mock) | Negativo | Fredera | 011 | App rodando em `http://localhost:5173/`, mock configurado para retornar erro 401 | Navegar para Login, preencher usuário e senha inválidos e clicar em "Entre" | Deve exibir toast `"Usuário ou senha inválidos"` e não navegar para `/homescreen` | Aprovado | Teste passou em 1.7 s |
+| 12 | Validar fluxo de criação, login, edição e persistência de dados do usuário | Positivo | Fredera | 012 | App rodando em `http://localhost:5173/` e backend disponível em `http://localhost:3000` | Criar usuário via API, logar, abrir perfil, editar dados e salvar | Deve atualizar dados no frontend e refletir alterações no backend | Aprovado | Teste passou em 3.3 s |
+| 13 | Validar se não permite salvar dados inválidos (apartamento inválido) | Negativo | Fredera | 013 | App rodando em `http://localhost:5173/` e backend disponível em `http://localhost:3000` | Criar usuário válido, logar, abrir perfil, tentar editar com `Apartamento: 999` | Não deve enviar requisição PUT, deve manter dados originais e exibir usuário inicial na UI | Aprovado | Teste passou em 2.0 s |
+| 14 | Validar fluxo de criação, exibição e exclusão de recado | Positivo | Fredera | 014 | App rodando em `http://localhost:5173/` e backend disponível em `http://localhost:3000` | Criar usuário via API, criar recado, logar, abrir mural, verificar recado e excluir | Deve exibir recado criado na UI, permitir exclusão e remover recado da lista | Aprovado | Teste passou em 1.9 s |
+| 15 | Validar se não exibe recados quando usuário não possui nenhum | Negativo | Fredera | 015 | App rodando em `http://localhost:5173/` e backend disponível em `http://localhost:3000` | Criar usuário válido sem recados, logar e abrir mural | Deve exibir título `"Recados Ativos:"` mas não listar nenhum recado | Aprovado | Teste passou em 1.8 s |

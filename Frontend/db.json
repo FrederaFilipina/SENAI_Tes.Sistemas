@@ -1,0 +1,23 @@
+{
+  "usuarios": [
+    {
+      "nome": "Sr. Teste Filho Neto Jr.",
+      "bloco": "A",
+      "num_ap": "101",
+      "usuario": "tst",
+      "senha": "tst",
+      "id": "5SzA0Ub-HXA"
+    }
+  ],
+  "recados": [
+    {
+      "responsavel": "5SzA0Ub-HXA",
+      "tipo_recado": "Comunicado",
+      "recado": "Primeiro teste feito",
+      "status": "ativo",
+      "criado": "2026-06-15T22:05:04.306Z",
+      "id": "njtxL-ZMWow"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
